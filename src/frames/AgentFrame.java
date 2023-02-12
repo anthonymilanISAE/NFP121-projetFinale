@@ -9,6 +9,7 @@ import java.util.*;
 import models.*;
 import views.AccomodationView;
 import views.ActivitiesView;
+import views.ProgramsView;
 import views.TransportationView;
 
 public class AgentFrame extends JInternalFrame implements ActionListener {
@@ -84,32 +85,28 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
         currentPanel = e.getActionCommand().toString();
 
         if (o == iTra) {
-            if (panel.isShowing()) {
-                frame.remove(panel);
-            }
-            panel = new TransportationView().mainPanel;
-            frame.setContentPane(panel);
-            frame.pack();
+            changePanel(new TransportationView().mainPanel);
         }
-
         if (o == iAct) {
-            if (panel.isShowing()) {
-                frame.remove(panel);
-            }
-            panel = new ActivitiesView().mainPanel;
-            frame.setContentPane(panel);
-            frame.pack();
+            changePanel(new ActivitiesView().mainPanel);
         }
-
         if (o == iAcc) {
-            if (panel.isShowing()) {
-                frame.remove(panel);
-            }
-            panel = new AccomodationView().mainPanel;
-            frame.setContentPane(panel);
-            frame.pack();
+            changePanel(new AccomodationView().mainPanel);
+        }
+        if (o == iProg) {
+            changePanel(new ProgramsView().mainPanel);
+
         }
 
+    }
+
+    public void changePanel(JPanel newPanel) {
+        if (panel.isShowing()) {
+            frame.remove(panel);
+        }
+        panel = newPanel;
+        frame.setContentPane(panel);
+        frame.pack();
     }
 
     // * Function that loads data from files and saves them in the object arrays
