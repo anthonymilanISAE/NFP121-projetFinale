@@ -6,3 +6,5 @@ Design patterns
     FileReaderFactory
 - MVC
     Models/Views/Controllers
+- template method
+    SimpleViewTemplateMethod
