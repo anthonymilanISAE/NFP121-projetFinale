@@ -150,7 +150,7 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
                     }
                 }
             } catch (IOException | ClassNotFoundException ex) {
-                JOptionPane.showMessageDialog(null, "Chargement des enseignants erronné!");
+                JOptionPane.showMessageDialog(null, "Error loading Activities data");
             }
             // Load Accomodations Data
             try {

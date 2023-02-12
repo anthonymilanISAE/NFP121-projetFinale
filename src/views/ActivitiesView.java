@@ -18,8 +18,5 @@ public class ActivitiesView extends SimpleViewTemplateMethod {
         mainPanel = super.buildView("Activities", pageController.mainPanel,
                 pageController.list,
                 pageController.saveButton);
-        ;
-
     }
-
 }

@@ -18,8 +18,5 @@ public class AccomodationView extends SimpleViewTemplateMethod {
         mainPanel = super.buildView("Accomodations", pageController.mainPanel,
                 pageController.list,
                 pageController.saveButton);
-        ;
-
     }
-
 }
