@@ -109,7 +109,7 @@ public class ActivitiesController implements ActionListener, ListSelectionListen
                 Activity act = list.getSelectedValue();
                 act.setName(nameInput.getText());
                 act.setPrice(Double.parseDouble(priceInput.getText()));
-                act.setName(descriptionInput.getText());
+                act.setDescription(descriptionInput.getText());
 
             }
 

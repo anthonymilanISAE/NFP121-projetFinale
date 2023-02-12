@@ -1,40 +1,28 @@
 package views;
 
-import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
 import controllers.ActivitiesController;
+import models.SimpleViewFactory;
 
 public class ActivitiesView {
 
-    public JPanel mainPanel;
+    public JPanel leftPanel, mainPanel;
     JPanel pRight, pLeft;
+    TitledBorder title;
+    Border loweredetched;
     ActivitiesController pageController = new ActivitiesController();
 
     public ActivitiesView() {
-        // Page wrapper
         mainPanel = new JPanel();
-        Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-        TitledBorder title = BorderFactory.createTitledBorder(loweredetched, "Activities");
-        title.setTitleJustification(TitledBorder.CENTER);
+        leftPanel = new JPanel();
 
-        mainPanel.setBorder(title);
-        mainPanel.setLayout(new GridLayout(1, 2));
+        SimpleViewFactory simpleViewFactory = new SimpleViewFactory("Activities", pageController.mainPanel,
+                pageController.list,
+                pageController.saveButton);
 
-        // Left side
-        pLeft = new JPanel();
-        pLeft.setLayout(new GridLayout(4, 1));
-        pLeft.add(pageController.mainPanel);
-
-        pRight = new JPanel();
-        pRight.setLayout(new BorderLayout(10, 10));
-        pRight.add(new JScrollPane(pageController.list), BorderLayout.CENTER);
-        pRight.add(pageController.saveButton, BorderLayout.SOUTH);
-
-        // Build entire page
-        mainPanel.add(pLeft);
-        mainPanel.add(pRight);
+        mainPanel = simpleViewFactory.getView();
     }
 
 }
