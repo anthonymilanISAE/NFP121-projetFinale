@@ -13,13 +13,13 @@ import models.Transportation;
 import views.TransportationView;
 
 public class TransportationController implements ActionListener, ListSelectionListener {
-    JPanel panel;
+    public JPanel panel;
+    public JList<Transportation> list;
+    public JButton submitButton, saveButton;
     JLabel methodLabel, priceLabel;
     JTextField methodInput, priceInput;
-    JButton submitButton, saveButton;
     TitledBorder listBorder;
     ManageData dataManager = ManageData.getInstance();;
-    JList<Transportation> list;
     DefaultListModel<Transportation> listModel;
 
     public TransportationController() {
@@ -61,14 +61,6 @@ public class TransportationController implements ActionListener, ListSelectionLi
             });
         }
 
-    }
-
-    public JPanel getLeftPanelController() {
-        return panel;
-    }
-
-    public JList<Transportation> getRightPanelControllerList() {
-        return list;
     }
 
     public JButton getRightPanelControllerSave() {

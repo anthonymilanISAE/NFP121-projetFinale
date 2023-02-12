@@ -26,13 +26,13 @@ public class TransportationView {
 
         pLeft = new JPanel();
         pLeft.setLayout(new GridLayout(7, 2));
-        pLeft.add(pageController.getLeftPanelController());
+        pLeft.add(pageController.panel);
 
         // Right side
         pRight = new JPanel();
         pRight.setLayout(new BorderLayout(10, 10));
-        pRight.add(new JScrollPane(pageController.getRightPanelControllerList()), BorderLayout.CENTER);
-        pRight.add(pageController.getRightPanelControllerSave(), BorderLayout.SOUTH);
+        pRight.add(new JScrollPane(pageController.list), BorderLayout.CENTER);
+        pRight.add(pageController.saveButton, BorderLayout.SOUTH);
 
         // Build entire page
         mainPanel.add(pLeft);
