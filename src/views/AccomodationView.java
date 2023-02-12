@@ -4,9 +4,9 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import controllers.AccomodationsController;
-import models.SimpleViewFactory;
+import models.SimpleViewTemplateMethod;
 
-public class AccomodationView {
+public class AccomodationView extends SimpleViewTemplateMethod {
 
     public JPanel mainPanel;
     JPanel pRight, pLeft;
@@ -15,13 +15,11 @@ public class AccomodationView {
     AccomodationsController pageController = new AccomodationsController();
 
     public AccomodationView() {
-        mainPanel = new JPanel();
-
-        SimpleViewFactory simpleViewFactory = new SimpleViewFactory("Accomodations", pageController.mainPanel,
+        mainPanel = super.buildView("Accomodations", pageController.mainPanel,
                 pageController.list,
                 pageController.saveButton);
+        ;
 
-        mainPanel = simpleViewFactory.getView();
     }
 
 }

@@ -4,9 +4,9 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import controllers.ActivitiesController;
-import models.SimpleViewFactory;
+import models.SimpleViewTemplateMethod;
 
-public class ActivitiesView {
+public class ActivitiesView extends SimpleViewTemplateMethod {
 
     public JPanel mainPanel;
     JPanel pRight, pLeft;
@@ -15,13 +15,11 @@ public class ActivitiesView {
     ActivitiesController pageController = new ActivitiesController();
 
     public ActivitiesView() {
-        mainPanel = new JPanel();
-
-        SimpleViewFactory simpleViewFactory = new SimpleViewFactory("Activities", pageController.mainPanel,
+        mainPanel = super.buildView("Activities", pageController.mainPanel,
                 pageController.list,
                 pageController.saveButton);
+        ;
 
-        mainPanel = simpleViewFactory.getView();
     }
 
 }
