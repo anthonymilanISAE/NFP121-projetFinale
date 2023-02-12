@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.util.*;
 
 import models.*;
+import views.AccomodationView;
 import views.ActivitiesView;
 import views.TransportationView;
 
@@ -19,10 +20,9 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
     JMenuItem iTra, iAct, iAcc, iProg, iRes;
     JButton saveButton;
 
-    public static ArrayList<Transportation> listTransportations = new ArrayList<Transportation>();
+    public static ArrayList<Transportation> listTrans = new ArrayList<Transportation>();
     public static ArrayList<Activity> listAct = new ArrayList<Activity>();
-    // public static ArrayList<Accomodation> listAcc = new
-    // ArrayList<Accomodation>();
+    public static ArrayList<Accomodation> listAcc = new ArrayList<Accomodation>();
 
     public static ArrayList<String> listCampus;
 
@@ -101,6 +101,15 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
             frame.pack();
         }
 
+        if (o == iAcc) {
+            if (panel.isShowing()) {
+                frame.remove(panel);
+            }
+            panel = new AccomodationView().mainPanel;
+            frame.setContentPane(panel);
+            frame.pack();
+        }
+
     }
 
     // * Function that loads data from files and saves them in the object arrays
@@ -119,8 +128,8 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
                     ArrayList<Transportation> tempList = (ArrayList<Transportation>) ois.readObject();
                     ois.close();
                     if (!tempList.isEmpty()) {
-                        listTransportations = tempList;
-                        Transportation.setCounter(listTransportations.size() + 1);
+                        listTrans = tempList;
+                        Transportation.setCounter(listTrans.size() + 1);
                     }
                 }
             } catch (IOException | ClassNotFoundException ex) {
@@ -143,7 +152,22 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
             } catch (IOException | ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Chargement des enseignants erronné!");
             }
-
+            // Load Accomodations Data
+            try {
+                File fileEns = new File(directory.getName() + "\\accomodations");
+                if (fileEns.exists()) {
+                    fis = new FileInputStream(fileEns);
+                    ois = new ObjectInputStream(fis);
+                    ArrayList<Accomodation> tempList = (ArrayList<Accomodation>) ois.readObject();
+                    ois.close();
+                    if (!tempList.isEmpty()) {
+                        listAcc = tempList;
+                        Accomodation.setCounter(listAcc.size() + 1);
+                    }
+                }
+            } catch (IOException | ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Error loading Accomodations data!");
+            }
         }
         panel.revalidate();
         panel.repaint();

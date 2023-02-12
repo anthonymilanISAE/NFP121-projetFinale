@@ -55,8 +55,8 @@ public class TransportationController implements ActionListener, ListSelectionLi
         list.setBorder(listBorder);
         list.addListSelectionListener(this);
 
-        if (!AgentFrame.listTransportations.isEmpty()) {
-            AgentFrame.listTransportations.forEach((c) -> {
+        if (!AgentFrame.listTrans.isEmpty()) {
+            AgentFrame.listTrans.forEach((c) -> {
                 listModel.addElement(c);
             });
         }
@@ -68,7 +68,7 @@ public class TransportationController implements ActionListener, ListSelectionLi
     }
 
     public void saveData() {
-        dataManager.saveData("\\transportation", AgentFrame.listTransportations, "Error saving Transportation data");
+        dataManager.saveData("\\transportation", AgentFrame.listTrans, "Error saving Transportation data");
     }
 
     @Override
@@ -96,7 +96,7 @@ public class TransportationController implements ActionListener, ListSelectionLi
                 Transportation trans = new Transportation(methodInput.getText(),
                         Double.parseDouble(priceInput.getText()));
 
-                AgentFrame.listTransportations.add(trans);
+                AgentFrame.listTrans.add(trans);
             } else {
                 // Updating the transportation instance's info if user is in edit mode
                 Transportation trans = list.getSelectedValue();
@@ -113,7 +113,7 @@ public class TransportationController implements ActionListener, ListSelectionLi
 
         if (e.getSource() == saveButton) {
 
-            if (AgentFrame.listTransportations.isEmpty()) {
+            if (AgentFrame.listTrans.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "There is nothing to save!");
                 return;
             }
