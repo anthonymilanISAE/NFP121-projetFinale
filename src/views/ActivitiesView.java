@@ -8,7 +8,7 @@ import models.SimpleViewFactory;
 
 public class ActivitiesView {
 
-    public JPanel leftPanel, mainPanel;
+    public JPanel mainPanel;
     JPanel pRight, pLeft;
     TitledBorder title;
     Border loweredetched;
@@ -16,7 +16,6 @@ public class ActivitiesView {
 
     public ActivitiesView() {
         mainPanel = new JPanel();
-        leftPanel = new JPanel();
 
         SimpleViewFactory simpleViewFactory = new SimpleViewFactory("Activities", pageController.mainPanel,
                 pageController.list,

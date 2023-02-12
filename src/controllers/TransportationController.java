@@ -13,7 +13,7 @@ import models.Transportation;
 import views.TransportationView;
 
 public class TransportationController implements ActionListener, ListSelectionListener {
-    public JPanel panel;
+    public JPanel mainPanel;
     public JList<Transportation> list;
     public JButton submitButton, saveButton;
     JLabel methodLabel, priceLabel;
@@ -23,8 +23,8 @@ public class TransportationController implements ActionListener, ListSelectionLi
     DefaultListModel<Transportation> listModel;
 
     public TransportationController() {
-        panel = new JPanel();
-        panel.setLayout(new GridLayout(0, 1));
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(0, 1));
 
         methodLabel = new JLabel("Transportation Method:");
         methodInput = new JTextField(20);
@@ -39,11 +39,11 @@ public class TransportationController implements ActionListener, ListSelectionLi
         saveButton.addActionListener(this);
 
         // Left side Panel
-        panel.add(methodLabel);
-        panel.add(methodInput);
-        panel.add(priceLabel);
-        panel.add(priceInput);
-        panel.add(submitButton);
+        mainPanel.add(methodLabel);
+        mainPanel.add(methodInput);
+        mainPanel.add(priceLabel);
+        mainPanel.add(priceInput);
+        mainPanel.add(submitButton);
 
         // Right Side panel
         listModel = new DefaultListModel<Transportation>();
