@@ -24,8 +24,7 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
     public static ArrayList<Transportation> listTrans = new ArrayList<Transportation>();
     public static ArrayList<Activity> listAct = new ArrayList<Activity>();
     public static ArrayList<Accomodation> listAcc = new ArrayList<Accomodation>();
-
-    public static ArrayList<String> listCampus;
+    public static ArrayList<Program> listProg = new ArrayList<Program>();
 
     String currentPanel = "";
 
@@ -95,7 +94,6 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
         }
         if (o == iProg) {
             changePanel(new ProgramsView().mainPanel);
-
         }
 
     }
@@ -152,6 +150,7 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
             // Load Accomodations Data
             try {
                 File fileEns = new File(directory.getName() + "\\accomodations");
+
                 if (fileEns.exists()) {
                     fis = new FileInputStream(fileEns);
                     ois = new ObjectInputStream(fis);
@@ -164,6 +163,23 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
                 }
             } catch (IOException | ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Error loading Accomodations data!");
+            }
+            // Load Programs Data
+            try {
+                File fileEns = new File(directory.getName() + "\\programs");
+                if (fileEns.exists()) {
+                    fis = new FileInputStream(fileEns);
+                    ois = new ObjectInputStream(fis);
+                    ArrayList<Program> tempList = (ArrayList<Program>) ois.readObject();
+                    ois.close();
+                    if (!tempList.isEmpty()) {
+                        listProg = tempList;
+                        Program.setCounter(listProg.size() + 1);
+                    }
+                }
+            } catch (IOException | ClassNotFoundException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error loading Programs data!");
             }
         }
         panel.revalidate();

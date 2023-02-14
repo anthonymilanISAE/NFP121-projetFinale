@@ -130,7 +130,6 @@ public class AccomodationsController implements ActionListener, ListSelectionLis
         }
 
         if (e.getSource() == saveButton) {
-
             if (AgentFrame.listAcc.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "There is nothing to save!");
                 return;
