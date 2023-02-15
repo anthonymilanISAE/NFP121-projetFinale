@@ -14,6 +14,6 @@ public class TransportationView extends SimpleViewTemplateMethod {
         mainPanel = super.buildView("Transportation",
                 pageController.mainPanel,
                 pageController.list,
-                pageController.saveButton);
+                pageController.saveButton, false);
     }
 }

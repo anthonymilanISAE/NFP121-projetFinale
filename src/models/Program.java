@@ -3,6 +3,7 @@ package models;
 import java.io.Serializable;
 
 public class Program implements Serializable {
+    private static final long serialVersionUID = -5642978038203825702L;
     Activity act;
     Transportation trans;
     Accomodation acc;

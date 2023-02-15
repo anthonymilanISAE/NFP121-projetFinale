@@ -6,7 +6,7 @@ import java.io.*;
 import javax.swing.*;
 
 import frames.AgentFrame;
-
+import frames.ClientFrame;
 import models.*;
 
 public class App implements ActionListener {
@@ -14,6 +14,7 @@ public class App implements ActionListener {
     public static JFrame frame;
     public static JButton agentLoginButton, userLoginButton;
     public static AgentFrame agentFrame;
+    public static ClientFrame clientFrame;
 
     public static JPanel panel, buttonPanel;
     public static JLabel userLabel, passwordLabel, errorMessage;
@@ -89,15 +90,22 @@ public class App implements ActionListener {
 
     }
 
-    private void closeTheCurrentFrameAndOpenNew() {
+    private void closeTheCurrentFrameAndOpenNew(boolean isAgent) {
         // Close current Frame
         frame.dispose();
 
         // Open new Frame
-        agentFrame = new AgentFrame();
-        agentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        agentFrame.setSize(800, 600);
-        agentFrame.setVisible(true);
+        if (isAgent) {
+            agentFrame = new AgentFrame();
+            agentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            agentFrame.setSize(800, 600);
+            agentFrame.setVisible(true);
+        } else {
+            clientFrame = new ClientFrame();
+            clientFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            clientFrame.setSize(800, 600);
+            clientFrame.setVisible(true);
+        }
     }
 
     public void setError() {
@@ -106,7 +114,7 @@ public class App implements ActionListener {
         passwordInput.setText("");
     }
 
-    public void readCredentials(String directory) {
+    public void readCredentials(String directory, boolean isAgent) {
         try {
             BufferedReader BfReader = frFactory.createFileReader(directory);
             String dataLine = BfReader.readLine();
@@ -120,7 +128,7 @@ public class App implements ActionListener {
                 if (!passwordValue.equals(dataLine)) {
                     setError();
                 } else {
-                    closeTheCurrentFrameAndOpenNew();
+                    closeTheCurrentFrameAndOpenNew(isAgent);
                 }
             }
         } catch (FileNotFoundException error) {
@@ -133,11 +141,16 @@ public class App implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
+        String os = System.getProperty("os.name");
         if (o == agentLoginButton) {
+            String filePath = os.equals("Mac OS X") ? "src/dummyData/adminCredentials.txt"
+                    : "src\\dummyData\\adminCredentials.txt";
             // accessing credentials file
-            readCredentials("src\\dummyData\\adminCredentials.txt");
+            readCredentials(filePath, true);
         } else {
-            readCredentials("src\\dummyData\\clientCredentials.txt");
+            String filePath = os.equals("Mac OS X") ? "src/dummyData/clientCredentials.txt"
+                    : "src\\dummyData\\clientCredentials.txt";
+            readCredentials(filePath, false);
         }
 
     }

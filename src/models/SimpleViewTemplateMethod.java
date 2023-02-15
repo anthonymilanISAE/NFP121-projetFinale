@@ -10,12 +10,13 @@ public class SimpleViewTemplateMethod {
     TitledBorder title;
     Border loweredetched;
 
-    public final JPanel buildView(String borderTitle, JPanel leftPanel, JList<?> list, JButton saveButton) {
+    public final JPanel buildView(String borderTitle, JPanel leftPanel, JList<?> list, JButton saveButton,
+            boolean isReversed) {
         buildFoundation();
         buildTitle(borderTitle);
         buildLeftPanel(leftPanel);
         buildRightPanel(list, saveButton);
-        buildFinal();
+        buildFinal(isReversed);
 
         return panel;
     }
@@ -23,7 +24,6 @@ public class SimpleViewTemplateMethod {
     private void buildFoundation() {
         panel = new JPanel();
         panel.setLayout(new GridLayout(1, 2));
-        // panel.setBackground(Color.RED);
     }
 
     private void buildTitle(String borderTitle) {
@@ -46,9 +46,14 @@ public class SimpleViewTemplateMethod {
         pRight.add(saveButton, BorderLayout.SOUTH);
     }
 
-    private void buildFinal() {
-        panel.add(pLeft);
-        panel.add(pRight);
+    private void buildFinal(boolean isReversed) {
+        if (isReversed) {
+            panel.add(pRight);
+            panel.add(pLeft);
+        } else {
+            panel.add(pLeft);
+            panel.add(pRight);
+        }
     }
 
 }
