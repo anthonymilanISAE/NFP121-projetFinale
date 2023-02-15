@@ -20,7 +20,7 @@ public class AccomodationsController implements ActionListener, ListSelectionLis
     public JList<Accomodation> list;
     JLabel nameLabel, priceLabel, starLabel, locationLabel;
     JTextField nameInput, priceInput, descriptionInput, locationInput;
-    ManageData dataManager = ManageData.getInstance();;
+    ManageData dataManager = ManageData.getInstance();
     TitledBorder listBorder;
     StarRater starRater;
 

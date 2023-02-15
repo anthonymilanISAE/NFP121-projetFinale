@@ -52,6 +52,6 @@ public class Activity implements Serializable {
     }
 
     public String toString() {
-        return " " + getId() + '-' + ' ' + getName() + ' ' + getPrice();
+        return " " + getId() + '-' + ' ' + getName() + ' ' + getPrice() + '$';
     }
 }

@@ -1,6 +1,8 @@
 package models;
 
-public class Reservation {
+import java.io.Serializable;
+
+public class Reservation implements Serializable {
     private static int id = 1;
     Program program;
     User user;
