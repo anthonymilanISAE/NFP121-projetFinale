@@ -11,6 +11,7 @@ import views.AccomodationView;
 import views.ActivitiesView;
 import views.ProgramsView;
 import views.TransportationView;
+import views.ReservationsView;
 
 public class AgentFrame extends JInternalFrame implements ActionListener {
 
@@ -19,12 +20,12 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
 
     JMenuBar mBar;
     JMenuItem iTra, iAct, iAcc, iProg, iRes;
-    JButton saveButton;
 
     public static ArrayList<Transportation> listTrans = new ArrayList<Transportation>();
     public static ArrayList<Activity> listAct = new ArrayList<Activity>();
     public static ArrayList<Accomodation> listAcc = new ArrayList<Accomodation>();
     public static ArrayList<Program> listProg = new ArrayList<Program>();
+    public static ArrayList<Reservation> listRes = new ArrayList<Reservation>();
 
     String currentPanel = "";
 
@@ -53,17 +54,12 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
         iRes = new JMenuItem("Reservations");
         iRes.addActionListener(this);
 
-        saveButton = new JButton();
-        saveButton.setText("Agent Login");
-        saveButton.addActionListener(this);
-
         mBar.add(iTra);
         mBar.add(iAct);
         mBar.add(iAcc);
         mBar.add(iProg);
         mBar.add(iRes);
 
-        panel.add(saveButton);
         frame.setJMenuBar(mBar);
         frame.pack();
         frame.setResizable(false);
@@ -94,6 +90,9 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
         }
         if (o == iProg) {
             changePanel(new ProgramsView().mainPanel);
+        }
+        if (o == iRes) {
+            changePanel(new ReservationsView().mainPanel);
         }
 
     }
@@ -180,6 +179,23 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
             } catch (IOException | ClassNotFoundException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error loading Programs data!");
+            }
+            // Load Reservations data
+            try {
+                File fileEns = new File(directory.getName() + "\\reservations");
+                if (fileEns.exists()) {
+                    fis = new FileInputStream(fileEns);
+                    ois = new ObjectInputStream(fis);
+                    ArrayList<Reservation> tempList = (ArrayList<Reservation>) ois.readObject();
+                    ois.close();
+                    if (!tempList.isEmpty()) {
+                        listRes = tempList;
+                        Reservation.setCounter(listRes.size() + 1);
+                    }
+                }
+            } catch (IOException | ClassNotFoundException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error loading Reservations data!");
             }
         }
         panel.revalidate();

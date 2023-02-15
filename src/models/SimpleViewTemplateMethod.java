@@ -23,10 +23,11 @@ public class SimpleViewTemplateMethod {
     private void buildFoundation() {
         panel = new JPanel();
         panel.setLayout(new GridLayout(1, 2));
-        loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+        // panel.setBackground(Color.RED);
     }
 
     private void buildTitle(String borderTitle) {
+        loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
         title = BorderFactory.createTitledBorder(loweredetched, borderTitle);
         title.setTitleJustification(TitledBorder.CENTER);
         panel.setBorder(title);
