@@ -8,6 +8,7 @@ import java.util.*;
 
 import models.*;
 import views.ClientProgramsView;
+import views.UserProfileView;
 
 public class ClientFrame extends JInternalFrame implements ActionListener {
 
@@ -62,9 +63,9 @@ public class ClientFrame extends JInternalFrame implements ActionListener {
         if (o == iProg) {
             changePanel(new ClientProgramsView().mainPanel);
         }
-        // if (o == iProf) {
-        // changePanel(new ProfileView().mainPanel);
-        // }
+        if (o == iProf) {
+            changePanel(new UserProfileView().mainPanel);
+        }
 
     }
 
