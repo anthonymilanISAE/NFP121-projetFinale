@@ -13,7 +13,7 @@ import models.Reservation;
 import views.ReservationsView;
 
 public class ReservationsController implements ActionListener, ListSelectionListener {
-    public JPanel mainPanel, leftPanel, rightPanel;
+    public JPanel mainPanel, leftPanel, rightPanel, confirmedListPanel;
     public JList<Reservation> list, confirmedList;
     public JButton submitButton, saveButton;
     JLabel methodLabel, priceLabel;
@@ -62,6 +62,7 @@ public class ReservationsController implements ActionListener, ListSelectionList
         mainPanel.add(submitButton);
 
         // Right Side Panel
+        confirmedListPanel = new JPanel();
         confirmedListModel = new DefaultListModel<Reservation>();
         listBorder = new TitledBorder(null, "Confirmed Reservations");
         listBorder.setTitleJustification(TitledBorder.CENTER);
@@ -70,6 +71,7 @@ public class ReservationsController implements ActionListener, ListSelectionList
         confirmedList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         confirmedList.setBorder(listBorder);
         confirmedList.addListSelectionListener(this);
+        confirmedListPanel.add(confirmedList);
 
         if (!AgentFrame.listRes.isEmpty()) {
             AgentFrame.listRes.forEach((c) -> {

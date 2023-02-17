@@ -11,9 +11,9 @@ public class ReservationsView extends SimpleViewTemplateMethod {
     ReservationsController pageController = new ReservationsController();
 
     public ReservationsView() {
-        mainPanel = buildView("Reservations",
-                pageController.mainPanel,
-                pageController.list,
-                pageController.saveButton, false);
+        // mainPanel = buildView("Reservations",
+        // pageController.confirmedListPanel,
+        // pageController.list,
+        // pageController.saveButton, true);
     }
 }

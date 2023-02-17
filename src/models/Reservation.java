@@ -25,6 +25,6 @@ public class Reservation implements Serializable {
     }
 
     public String toString() {
-        return " " + id + "User: " + user.toString() + " Number of Reservations: " + nbOfReservations;
+        return "User: " + user.toString() + " Number of Reservations: " + nbOfReservations;
     }
 }

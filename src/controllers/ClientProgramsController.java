@@ -23,7 +23,7 @@ import frames.ClientFrame;
 public class ClientProgramsController implements ActionListener, ListSelectionListener {
     public JList<Program> programList;
     DefaultListModel<Program> programsListModel;
-    Calendar myCalendar = new GregorianCalendar(2014, 2, 11);
+    Calendar myCalendar = new GregorianCalendar(2001, 11, 26);
     Date myDate = myCalendar.getTime();
 
     JLabel transportationTitle, accomodationTitle, accomodationSubtitle, activityTitle, activitySubtitle,
@@ -160,10 +160,6 @@ public class ClientProgramsController implements ActionListener, ListSelectionLi
     }
 
     public void saveData() {
-        Reservation res = new Reservation(programList.getSelectedValue(),
-                user, false, Integer.parseInt(nbOfReservations.getText()));
-
-        AgentFrame.listRes.add(res);
         dataManager.saveData("\\reservations", AgentFrame.listRes, "Error creating your Reservation");
     }
 
@@ -215,6 +211,9 @@ public class ClientProgramsController implements ActionListener, ListSelectionLi
                 return;
             }
 
+            Reservation res = new Reservation(programList.getSelectedValue(),
+                    user, false, Integer.parseInt(nbOfReservations.getText()));
+            AgentFrame.listRes.add(res);
             saveData();
 
             ClientFrame.panel = new ClientProgramsView().mainPanel;
