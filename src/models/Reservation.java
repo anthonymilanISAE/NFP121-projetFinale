@@ -3,6 +3,7 @@ package models;
 import java.io.Serializable;
 
 public class Reservation implements Serializable {
+    private static final long serialVersionUID = 7216697123838538989L;
     private static int id = 1;
     Program program;
     User user;
@@ -18,6 +19,22 @@ public class Reservation implements Serializable {
 
     public static void setCounter(int i) {
         id = i;
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public double getPrice() {
+        return program.getPrice() * nbOfReservations;
+    }
+
+    public int getNbReservations() {
+        return nbOfReservations;
     }
 
     public boolean getConfirmation() {

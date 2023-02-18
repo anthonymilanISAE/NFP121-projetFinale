@@ -26,6 +26,7 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
     public static ArrayList<Accomodation> listAcc = new ArrayList<Accomodation>();
     public static ArrayList<Program> listProg = new ArrayList<Program>();
     public static ArrayList<Reservation> listRes = new ArrayList<Reservation>();
+    public static ArrayList<Reservation> listConfRes = new ArrayList<Reservation>();
 
     String currentPanel = "";
 
@@ -196,6 +197,23 @@ public class AgentFrame extends JInternalFrame implements ActionListener {
             } catch (IOException | ClassNotFoundException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error loading Reservations data!");
+            }
+            // Load Confirmed Reservations data
+            try {
+                File fileEns = new File(directory.getName() + "\\confirmedReservations");
+                if (fileEns.exists()) {
+                    fis = new FileInputStream(fileEns);
+                    ois = new ObjectInputStream(fis);
+                    ArrayList<Reservation> tempList = (ArrayList<Reservation>) ois.readObject();
+                    ois.close();
+                    if (!tempList.isEmpty()) {
+                        listConfRes = tempList;
+                        Reservation.setCounter(listConfRes.size() + 1);
+                    }
+                }
+            } catch (IOException | ClassNotFoundException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error loading Confirmed Reservations data!");
             }
         }
         panel.revalidate();

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
+    private static final long serialVersionUID = 9181301080787590832L;
     String fName;
     String lName;
     float balance;
@@ -58,6 +59,14 @@ public class User implements Serializable {
 
     public void setBirthDate(Date date) {
         birthDate = date;
+    }
+
+    public void reduceBalance(double bal) {
+        balance -= bal;
+    }
+
+    public void addBalance(double bal) {
+        balance += bal;
     }
 
     public String toString() {

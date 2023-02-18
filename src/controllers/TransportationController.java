@@ -63,10 +63,6 @@ public class TransportationController implements ActionListener, ListSelectionLi
 
     }
 
-    public JButton getRightPanelControllerSave() {
-        return saveButton;
-    }
-
     public void saveData() {
         dataManager.saveData("\\transportation", AgentFrame.listTrans, "Error saving Transportation data");
     }
