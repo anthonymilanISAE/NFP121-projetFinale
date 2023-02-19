@@ -16,7 +16,7 @@ Les administrateurs peuvent enfin gérer ces réservations en les confirmant et/
 Les patrons de conception mis en œuvre dans ce projet sont les suivants:
 
 - Singleton
-  Dans les files `ManageData` et `FileReaderFactory`, qui vont de pair parce que nous avons vu la nécessité de créer une seule entité de lecture/ecriture de données, ce qui réduirait la consommation de mémoire.
+  Dans `ManageData` parce que nous avons vu la nécessité de créer une seule entité d' ecriture de données, ce qui réduirait la consommation de mémoire.
   En raison du fait que nous n’avons pas créé de base de données utilisateur, nous nous sommes plutôt appuyés sur un seul point d’entrée client: nous avons également mis en œuvre le modèle Singleton au modèle `User`.
 
 - Factory

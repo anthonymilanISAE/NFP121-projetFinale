@@ -2,22 +2,10 @@ package models;
 
 import java.io.*;
 
-public class FileReaderFactory {
+public abstract class FileReaderFactory {
     protected BufferedReader bufferedReader;
     protected File readFile;
     protected FileReader fileReader;
-
-    private static FileReaderFactory instance = null;
-
-    private FileReaderFactory() {
-    }
-
-    public static FileReaderFactory getInstance() {
-        if (instance == null) {
-            instance = new FileReaderFactory();
-        }
-        return instance;
-    }
 
     public BufferedReader createFileReader(String directory) throws FileNotFoundException {
         readFile = new File(directory);
@@ -27,4 +15,5 @@ public class FileReaderFactory {
         return bufferedReader;
     }
 
+    public abstract void readCredentials(String directory, boolean isAgent);
 }

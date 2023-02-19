@@ -9,7 +9,7 @@ import frames.AgentFrame;
 import frames.ClientFrame;
 import models.*;
 
-public class App implements ActionListener {
+public class App extends FileReaderFactory implements ActionListener {
 
     public static JFrame frame;
     public static JButton agentLoginButton, userLoginButton;
@@ -23,7 +23,7 @@ public class App implements ActionListener {
 
     public static Font panelFont, errorFont;
 
-    FileReaderFactory frFactory = FileReaderFactory.getInstance();
+    FileReaderFactory frFactory;
 
     App() {
         // Initialize Frame
@@ -116,7 +116,7 @@ public class App implements ActionListener {
 
     public void readCredentials(String directory, boolean isAgent) {
         try {
-            BufferedReader BfReader = frFactory.createFileReader(directory);
+            BufferedReader BfReader = super.createFileReader(directory);
             String dataLine = BfReader.readLine();
             String inputValue = usernameInput.getText();
             String passwordValue = new String(passwordInput.getPassword());
